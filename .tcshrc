@@ -1,0 +1,34 @@
+set MANPATH="/usr/local/man:/usr/local/share/man:/usr/share/man:/usr/X11R6/man:/sw/share/man"
+setenv PROTEGE_HOME /home/bobak/dwn/ai/ont/prot/Protege_3.5 
+setenv PROTEGE_HOME5 /home/bobak/dwn/ai/ont/prot/Protege-5.2.0
+#setenv JAVA_HOME /usr/lib/jvm/default-java
+setenv JAVA_HOME /usr/lib/jvm/java-8-oracle
+#setenv JAVA_HOME /usr/lib/jvm/java-7-openjdk-amd64
+#setenv JAVA_HOME /usr/lib/jvm/java-8-oracle
+setenv JESS_HOME /home/bobak/dwn/ai/rxn/jess/src/Jess71p2 
+setenv CLASSPATH /home/bobak/bin/jar
+setenv CP /home/bobak/bin/jar
+setenv XMLSH /home/bobak/dwn/web/xml/alt/src/xmlsh_1_2_5 
+set LD_LIBRARY_PATH="/usr/local/lib:/usr/lib:/usr/bin/lib"
+#set path = (~/bin $path . $HOME/.linuxbrew/bin) 
+#set path = (/home/bobak/py3k/bin $path . $HOME/.linuxbrew/bin) 
+#set path = ($path /home/bobak/dwn/gnu/homebrew/linuxbrew/Library/ENV/4.3)
+#set path = ($path . ~/bin/jf)
+#setenv CC /usr/bin/h5cc
+#setenv BREAK_CHARS "(){}[],^%$#@\"\";''|\\" 
+#setenv PATH "$HOME/.linuxbrew/bin:$PATH"
+setenv MANPATH "$HOME/.linuxbrew/share/man:$MANPATH"
+#setenv INFOPATH "$HOME/.linuxbrew/share/info:$INFOPATH"
+setenv R_HOME /usr/lib/R
+#setenv R_HOME /usr/local/lib/R
+#setenv MOZILLA_FIVE_HOME /usr/lib/firefox
+setenv MOZILLA_FIVE_HOME /usr/lib/mozilla
+setenv TOMCAT_HOME /var/lib/tomcat8
+setenv CATALINA_HOME /usr/share/tomcat8
+setenv CATALINA_BASE /var/lib/tomcat8 
+#export PATH="/home/bobak/miniconda3/bin:$PATH"
+set path = (/home/bobak/miniconda3/bin $path . ~/bin/jf)
+##setenv PYTHONPATH /home/bobak/py3k
+#setenv PYTHONPATH /usr/lib/python2.7
+setenv DISPLAY 10.0.0.21
+#source ~/.login

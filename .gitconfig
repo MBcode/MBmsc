@@ -1,0 +1,15 @@
+[user]
+    name = MBcode
+    email = mike.bobak@gmail.com
+[push]
+	default = simple
+	editor = vim
+[push]
+    default = matching
+[diff]
+    tool = vimdiff
+[difftool]
+    prompt = false
+[github]
+    user = MBcode
+    token = token

@@ -1,0 +1,93 @@
+(require :asdf) ;this is old, load updates, so fix again
+;(declaim (optimize (debug 3) (safety 3) (speed 0) (space 0))) 
+(sb-ext:restrict-compiler-policy 'debug 3)
+(require' sb-posix)
+;(require 'swank)
+;(swank-loader:init :load-contribs t)
+(defvar *histlen* nil)
+
+;#-:asdf (load "/Users/bobak/Documents/downloads/lang/lsp/asdf/asdf-install/load-asdf-install")
+(setf asdf:*central-registry* 
+      '( *default-pathname-defaults* 
+        #p"/usr/local/lib/sbcl/site-systems/"
+;       #p"/Users/bobak/quicklisp/local-projects/" same as:
+        ;#p"/Users/bobak/Documents/downloads/lang/lsp/code/project/"
+        #p"/home/bobak/dwn/lang/lsp/code/project/"
+  ;     #p"/usr/share/common-lisp/systems/" ;ln to below
+))
+        ;#p"/Users/bobak/.sbcl/systems/"
+         ;#p"/Users/bobak/lsp/y"
+        ;#p"/Users/bobak/Documents/downloads/lang/lsp/code/project/src/clbuild_0/systems/" 
+(defun pv () (princ sb-ext:*debug-print-variable-alist*
+                    ))
+;#+ignore
+(defun ldql ()
+(let ((quicklisp-init (merge-pathnames "quicklisp/setup.lisp" (user-homedir-pathname)))
+      (t2 (merge-pathnames "quicklisp/t.lsp" (user-homedir-pathname))))
+    (if (probe-file quicklisp-init)
+      (progn
+          (load quicklisp-init)
+          (if (probe-file t2) (load t2 :print t)
+            (warn "no qa/ql"))
+         ;(eval-when (:load-toplevel :execute)
+         ;      (use-package :ql)
+         ;      (defun ql (a) (quickload  a))
+         ;      (defun qa (a) (system-apropos  a))
+         ;      )
+          ) ;t2 has fncs below
+      (warn "no quicklisp")))
+)
+;;; The following lines (should have been) added by ql:add-to-init-file:
+#-quicklisp
+(let ((quicklisp-init (merge-pathnames "quicklisp/setup.lisp"
+				       (user-homedir-pathname))))
+  (when (probe-file quicklisp-init)
+    (load quicklisp-init))) 
+
+;(lql) ;just do it 
+;#+quicklisp (defun ql (a) (ql:quickload  a))
+(defun al (p) (asdf:operate 'asdf:load-op p))
+#+quicklisp (defun ql (a) (ql:quickload  a :verbose t :explain t))
+#+quicklisp (defun qa (a) (ql:system-apropos  a))
+#+quicklisp (defun qd (a) (ql:who-depends-on  a))
+(defun tst (s) (ASDF/OPERATE:TEST-SYSTEM s))
+;=might try breaking rest out here
+(defun cu- () (compile-file "/home/bobak/lsp/sbclrc.lisp"))
+(defun cuq () (compile-file "/home/bobak/lsp/u2q.lisp"))
+(defun lkmq ()  (load "/home/bobak/lsp/u2q")) ;(lu) (lkm2)
+(defun lkm4 ()  ;(lu) (lkm2)
+  (ql 'km) (load "/home/bobak/lsp/kmu2.lisp"))
+;(defun ql1 () (la1))
+;switched scl&scl- aliases, but s1,s2... isn't loading files now, have to run (l1),(l2)..
+;I might go to having a fnc in sbclrc that explicitly loads le.lisp, so I can always start w/o it
+(defun cut () (compile-file "/home/bobak/lsp/ts.lisp"))
+;-
+(defun cu () (compile-file "/home/bobak/lsp/util_mb.lisp"))
+(defun cu2 () (compile-file "/home/bobak/lsp/u2.lisp"))
+(defun cu3 () (compile-file "/home/bobak/lsp/km_2-5-45.lisp")) ;might need my scl2 alias
+;-
+(defun cuall () (cu) (cu2) (cu-) (cut))
+(defun cuall2 () (cuall) (cu3))
+;(defun lh (fn) (load (str-cat "/home/bobak/lsp/" fn) :print t))
+(defun clt () (compile-file "t.cl"))
+(defun lclt () (load "t"))
+(load "/home/bobak/lsp/sbclrc")
+(load "/home/bobak/lsp/ts") ;cwd (tsh str)
+;(ql 'cl-cwd) ;maybe
+;(defun cwd (p) (cl-cwd:cwd p))
+;(load "/home/bobak/lsp/ts.cl") ;trivial-shell (tsh str)
+;(ql 'cl-cwd) (defun pwd () (cl-cwd:get-cwd)) (defun cd (d) (cl-cwd:cwd d))
+(defun qlud () (ql:update-dist "quicklisp"))
+;http://bnmcgn.github.io/lisp-guide/lisp-exploration.html
+(defun qlsl () (ql:system-list))
+(defun lap () (list-all-packages))
+(defun ls-pkgs () (list-all-packages))
+(defun pkg-use (p) (package-use-list (find-package p)))
+(defun all-sym () (apropos "" *package*))
+(defun pkg-appropos (s) (apropos s *package*))
+(defun lsp-ver () (format t "~%~a~a" (lisp-implementation-type) (lisp-implementation-version)))
+(defun w-ver () (format t "~%~a, ~a" (software-version) (machine-version)))
+(defun version () (w-ver) (lsp-ver))
+(defun ql-init () (ql-impl-util::init-file-name-for (lisp-implementation-type)))
+(defun qlws (s) (ql:where-is-system s))
+(defun dti (v) (describe v) (print (type-of v)) (inspect v))
